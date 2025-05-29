@@ -280,10 +280,12 @@ plot_mean_attn(mean_mat_es, mean_mat_rand_es)
 
 print(detect_diff_head(mean_mat_fr, mean_mat_rand_fr, 0.075))
 
-print(detect_diff_head(mean_mat_de, mean_mat_rand_de, 0.06))
+print(detect_diff_head(mean_mat_de, mean_mat_rand_de, 0.075))
 
-print(detect_diff_head(mean_mat_ja, mean_mat_rand_ja, 0.04))
+print(detect_diff_head(mean_mat_ja, mean_mat_rand_ja, 0.05))
 
-print(detect_diff_head(mean_mat_ar, mean_mat_rand_ar, 0.06))
+print(detect_diff_head(mean_mat_ar, mean_mat_rand_ar, 0.075))
 
-print(detect_diff_head(mean_mat_es, mean_mat_rand_es, 0.06))
+print(detect_diff_head(mean_mat_es, mean_mat_rand_es, 0.075))
+
+# %%
