@@ -14,20 +14,17 @@ For the details, please refer to the source code.
 
 The result is as follows. Nonrand means the sentences are translation and rand means it is just a random sentence with similar lengths.
 
-![French Qwen](FR-qwen.png)
-*English-French translation in Qwen*
+### Qwen2.5-3B
 
-![German Qwen](DE-qwen.png)
-*English-German translation in Qwen*
+![English to French Qwen](images/EN-FR-qwen.png)
 
-![Japanese Qwen](JA-qwen.png)
-*English-Japanese translation in Qwen*
+![English to German Qwen](images/EN-DE-qwen.png)
 
-![Arabic Qwen](AR-qwen.png)
-*English-Arabic translation in Qwen*
+![English to Japanese Qwen](images/EN-JA-qwen.png)
 
-![Spanish Qwen](ES-qwen.png)
-*English-Spanish translation in Qwen*
+![English to Arabic Qwen](images/EN-AR-qwen.png)
+
+![English to Spanish Qwen](images/EN-ES-qwen.png)
 
 The following is the possible translation heads identified based on the difference in the attention values. I used 0.075 for the threshold except Japanese, whose threshold is 0.05.
 
@@ -37,19 +34,44 @@ JA: ['20.4', '26.12']
 AR: ['20.4', '26.12']
 ES: ['15.8', '20.1', '20.4', '20.6', '22.15', '25.5', '26.12']
 
-![French Gemma](FR-gemma.png)
+![French to English Qwen](images/FR-EN-qwen.png)
+
+![German to English Qwen](images/DE-EN-qwen.png)
+
+![Japanese to English Qwen](images/JA-EN-qwen.png)
+
+![Arabic to English Qwen](images/AR-EN-qwen.png)
+
+![Spanish to English Qwen](images/ES-EN-qwen.png)
+
+![Chinese to French Qwen](images/ZH-FR-qwen.png)
+
+![Chinese to German Qwen](images/ZH-DE-qwen.png)
+
+![Chinese to English Qwen](images/ZH-EN-qwen.png)
+
+![French to Chinese Qwen](images/FR-ZH-qwen.png)
+
+![German to Chinese Qwen](images/DE-ZH-qwen.png)
+
+![English to Chinese Qwen](images/EN-ZH-qwen.png)
+
+
+### Gemma2-2B
+
+[French Gemma]
 *English-French translation in Gemma*
 
-![German Gemma](DE-gemma.png)
+[German Gemma]
 *English-German translation in Gemma*
 
-![Japanese Gemma](JA-gemma.png)
+[Japanese Gemma]
 *English-Japanese translation in Gemma*
 
-![Arabic Gemma](AR-gemma.png)
+[Arabic Gemma]
 *English-Arabic translation in Gemma*
 
-![Spanish Gemma](ES-gemma.png)
+[Spanish Gemma]
 *English-Spanish translation in Gemma*
 
 The following is the possible translation heads identified based on the difference in the attention values. I used 0.04 for the threshold except Japanese, whose threshold is 0.03.

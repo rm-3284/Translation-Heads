@@ -12,7 +12,7 @@ def dataset_clean(model: HookedTransformer,
         ds: list[dict], lang: tuple[str], len_diff: int = 5, 
         min_len:int = 3, max_len:int = 50) -> list[dict]:
     # returns clean sentences from the dataset
-    # lang has to be ("en", other language) e.g. ("en", "fr")
+    # lang has to be a language that has space inbetween the words
     en = lang[0]
     other = lang[1]
     new_dict = []
@@ -68,18 +68,19 @@ def find_translation_token(
     str_tokens = model.to_str_tokens(tokens)
     head_index = []
     for head in language_heads:
-        head_index.append(str_tokens.index(head))
+        # if 2, that means it is not the language token
+        head_index.append(str_tokens.index(head, 3))
     return head_index
 
 def loop_dict_to_sentence(
         data: list[dict], lang_lower: tuple[str], lang_upper: tuple[str]) -> list[str]:
-    en = lang_lower[0]
-    other = lang_lower[1]
-    EN = lang_upper[0]
-    OTHER = lang_upper[1]
+    anchor = lang_lower[0]
+    translated = lang_lower[1]
+    ANCHOR = lang_upper[0]
+    TRANSLATED = lang_upper[1]
     sentences = []
     for element in data:
-        sentences.append(f"{EN}: {element[en]} {OTHER}: {element[other]}")
+        sentences.append(f"{ANCHOR}: {element[anchor]} {TRANSLATED}: {element[translated]}")
     return sentences
 
 def make_mat_mean(model: HookedTransformer, sentences: list[str], lang: str) -> Float[Tensor, "n_layers n_heads"]:
@@ -93,25 +94,35 @@ def make_mat_mean(model: HookedTransformer, sentences: list[str], lang: str) -> 
     mean_mat /= len(sentences)
     return mean_mat
 
-def plot_mean_attn(tensor1, tensor2):
+def plot_mean_attn(tensor1, tensor2, lang):
     fig, axs = plt.subplots(1, 3, figsize=(10, 5))
     vmin = min(tensor1.min(), tensor2.min())
     vmax = max(tensor1.max(), tensor2.max())
 
     # Visualize tensor1
     im1 = axs[0].imshow(tensor1, cmap='viridis', vmin=vmin, vmax=vmax)
-    axs[0].set_title('Nonrand')
+    axs[0].set_title('Translation')
+    axs[0].set_xlabel('Head')
+    axs[0].set_ylabel('Layer')
     fig.colorbar(im1, ax=axs[0])
 
     # Visualize tensor2
     im2 = axs[1].imshow(tensor2, cmap='viridis', vmin=vmin, vmax=vmax)
-    axs[1].set_title('Rand')
+    axs[1].set_title('Random')
+    axs[1].set_xlabel('Head')
+    axs[1].set_ylabel('Layer')
     fig.colorbar(im2, ax=axs[1])
 
     # Visualize the difference
     im3 = axs[2].imshow(tensor1 - tensor2, cmap='viridis')
     axs[2].set_title('Diff')
+    axs[2].set_xlabel('Head')
+    axs[2].set_ylabel('Layer')
     fig.colorbar(im3, ax=axs[2])
+
+
+    plt.subplots_adjust(bottom=0.1, right=1.1)
+    fig.suptitle(f"Cross language attention from {lang[0]} to {lang[1]}", fontsize=16)
 
     plt.show()
 
