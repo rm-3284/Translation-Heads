@@ -81,3 +81,26 @@ DE: ['5.2', '6.1', '6.2', '8.1', '8.6', '10.4', '10.5', '15.0']
 JA: ['6.2', '8.1', '8.6', '10.4', '12.3', '15.0', '16.4', '16.7']
 AR: ['6.2', '8.1', '8.6', '10.4', '10.5', '15.0']
 ES: ['6.2', '8.1', '10.5', '15.0']
+
+## Ablation
+
+<details>
+
+<summary>Failed Attempt</summary>
+
+Tried to do ablation by injecting corrupted inputs to the correct stream. Took the diffrence in logits of the first French word.
+
+The corrupted inputs that I tried are as follows.
+
+- mean values over the English sentences
+- max values over the English sentences
+- min values over the English sentences
+- zero ablation
+
+Injecting the values from English sentences does not make a good comparison as too much things are changed at the same time.
+
+The sentence I tried is "EN: I'm onto him now. FR: Je le tiens."
+
+In all the cases, it turned out that the heads identified by the attention pattern does not play a big role but instead, the first layer and L3H0, L7H4 plays a big role. This possibly implies that there is a translation head activated when the original translation heads are deactivated. However, this experiment is not rigorous enough to conclude anything. As for why the first layer is important, it is likely that the first layer contributes to which information is read.
+
+</details>
