@@ -1,5 +1,51 @@
 # Translation-Heads
 
+## Terms (and what it could mean to our case)
+
+### Ablation
+
+Deletes one activation and see the change in logits.
+
+- Zero Ablation
+- Mean Ablation
+- Random Ablation: Replacing the activation with the same activation on a randomly chosen other data point
+
+### Logit Difference
+
+The difference between two possible next tokens.
+
+It works even better if you can take the average logit difference with another prompt with the answers the other way round. Eg the average logit difference between Paris and Rome in “The Eiffel Tower is in” and between Rome and Paris in “The Colosseum is in”. This controls for things even better, as sometimes the model has memorised “Rome occurs more often than Paris”, and this averaging will cancel that out.
+
+### Logit Lens
+
+A technique where we take the residual stream after layer $k$ per-token loss. The key finding is that, often, the model has become confident in the correct next token before the final layer, and each layer incrementally improves and refines that confidence.
+
+This is equivalent to zero ablating layers $k+1 … n_{layers}-1$.
+
+### Activation Patching
+
+It runs the model on input A, replaces (patches) an activation with that same activation on input B, and sees how much that shifts the answer from A to B.
+
+A key detail is that we move a single activation from the clean run to the corrupted run. So if this changes the answer from incorrect to correct, we can be confident that the activation moved was important
+
+Causal tracing is a type of activation patching.
+
+![activation patching](https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/simpler-patching-2c.png)
+
+### Path Patching
+
+For a pair of components, we patch in the clean output of component 1, but only along paths that affect the input of component 2.
+
+Direct Path Patching: A simpler variant where we only patch in the component of the input to component 2 that directly comes from component 1.
+
+![path patching](https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/simpler-patching-3c.png)
+
+In the arena tutorials, it is fixing the receiver heads and making a table by changing the sender head one by one. In [Exploring Translation Mechanism of Large Language Models](https://arxiv.org/html/2502.11806v2#bib.bib40), it looks like they are fixing the receiver head as the final logits. Also, they are injecting the activation from corrupted input to the clean stream.
+
+### Attribution Patching
+
+Use gradients to take a linear approximation to activation patching. By computing the gradient with respect to each activation, we can estimate the change in logits.
+
 ## Difference in Attention Head Pattern
 
 Input - An English sentence followed by a sentence in another language. Syntax is as follows.
