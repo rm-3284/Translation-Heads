@@ -1,3 +1,17 @@
+# Tools for Mechanistic Interpretability
+
+## Transformerlens
+
+Have a variety of tutorials and step by step explanations. Has a limited number of supported models. Some patching functions do not work if the model has different number of attention heads and kv heads.
+
+## NNsight
+
+Basically supports all the models that use transformers. Uses complicated data types, which makes it harder to debug programs.
+
+## Pyvene
+
+Has a limited number of supported models but can be easily expanded (by creating modelings_intervenable_MODEL.py and adding stuff to intervenable_modelcard.py). Easier to debug compared to nnsight.
+
 # Translation-Heads
 
 ## Terms (and what it could mean to our case)
