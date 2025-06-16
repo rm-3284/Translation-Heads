@@ -450,3 +450,164 @@ Noising Experiments
 ![English to German](images/activation_patching_results/de_en7.png)
 
 ![English to German](images/activation_patching_results/de_en8.png)
+
+Patching with the third language (with similar grammatical structure)
+
+```
+full_prompt = "日本語: これは私が見た中で最も大きい寺ではない。Türkçe: Bu, gördüğüm yerler arasında en büyük tapınak değil."
+clean_prompt = "日本語: これは私が見た中で最も大きい寺ではない。Türkçe: Bu, gördüğüm yerler arasında en"
+corrupt_prompt = "日本語: これは私が見た中で最も大きい寺ではない。Türkçe: Bu, gördüğüm yerler arasında 가장"
+```
+
+Predictions
+
+```
+Predictions for clean prompt
+_büyük               0.921875
+_büy                 0.02783203125
+_küçük               0.009033203125
+_geniş               0.00701904296875
+_büyü                0.006195068359375
+_çok                 0.0037689208984375
+_yüksek              0.0037689208984375
+_kü                  0.0029296875
+_kal                 0.002288818359375
+_uzun                0.00177764892578125
+Predictions for corrupt prompt
+_큰                   0.365234375
+_büyük               0.2353515625
+_büyü                0.1044921875
+_크                   0.0634765625
+_büy                 0.0218505859375
+大きい                  0.01507568359375
+큰                    0.01251220703125
+_                    0.007568359375
+_작은                  0.005889892578125
+_작                   0.005218505859375
+```
+
+Denoising Experiments
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko1.png)
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko2.png)
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko3.png)
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko4.png)
+
+Noising Experiments
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko5.png)
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko6.png)
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko7.png)
+
+![Japanese to Turkish patched with Korean](images/activation_patching_results/ja_tu_ko8.png)
+
+
+```
+full_prompt = "Español: El presidente visita la ciudad con su esposa cada año. Français: Le président visite la ville avec sa femme chaque année."
+clean_prompt = "Español: El presidente visita la ciudad con su esposa cada año. Français: Le président visite la ville avec sa femme chaque"
+corrupt_prompt = "Español: El presidente visita la ciudad con su esposa cada año. Français: Le président visite la ville avec sa femme ogni"
+```
+
+Predictions
+
+```
+Predictions for clean prompt
+_année               0.99609375
+_an                  0.001922607421875
+_années              0.00054931640625
+_ans                 0.00020313262939453125
+_fois                7.009506225585938e-05
+.                    6.580352783203125e-05
+_ann                 5.817413330078125e-05
+_Ann                 4.8160552978515625e-05
+_été                 4.8160552978515625e-05
+\n\n                 3.528594970703125e-05
+Predictions for corrupt prompt
+_anno                0.9921875
+_anni                0.00191497802734375
+_ano                 0.000965118408203125
+anno                 0.000583648681640625
+_ann                 0.000377655029296875
+_giorno              0.000377655029296875
+_año                 0.0002765655517578125
+_annet               0.000202178955078125
+_year                0.00017833709716796875
+_année               9.5367431640625e-05
+```
+
+Denoising Experiments
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it1.png)
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it2.png)
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it3.png)
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it4.png)
+
+Noising Experiments
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it5.png)
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it6.png)
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it7.png)
+
+![Spanish to French patched with Italian](images/activation_patching_results/es_fr_it8.png)
+
+```
+full_prompt = "Nederlands: De leraar leest het boek met de studenten elke ochtend. English: The teacher reads the book with the students every morning."
+#full_prompt = "English: The teacher reads the book with the students every morning. Deutsch: Der Lehrer liest das Buch mit den Schülern jeden Morgen."
+clean_prompt = "Nederlands: De leraar leest het boek met de studenten elke ochtend. English: The teacher reads the book with the students every"
+corrupt_prompt = "Nederlands: De leraar leest het boek met de studenten elke ochtend. English: The teacher reads the book with the students jeden"
+```
+
+```
+Predictions for clean prompt
+_morning             0.98828125
+_day                 0.00970458984375
+<start_of_image>     0.0009002685546875
+_evening             0.00022792816162109375
+_mor                 0.00022792816162109375
+_morn                0.00022792816162109375
+\n\n                 0.00020122528076171875
+_mom                 0.000156402587890625
+\n                   0.00013828277587890625
+morning              0.00013828277587890625
+Predictions for corrupt prompt
+_morgen              0.61328125
+_morning             0.1005859375
+_Morgen              0.0732421875
+_dag                 0.039306640625
+_Tag                 0.019775390625
+_tag                 0.0174560546875
+_day                 0.015380859375
+_morg                0.00823974609375
+.                    0.0034332275390625
+_deň                 0.0028533935546875
+```
+
+Denoising Experiments
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de1.png)
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de2.png)
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de3.png)
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de4.png)
+
+Noising Experiments
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de5.png)
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de6.png)
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de7.png)
+
+![Dutch to English patched with German](images/activation_patching_results/nl_en_de8.png)
